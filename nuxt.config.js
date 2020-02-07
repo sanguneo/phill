@@ -14,6 +14,7 @@ module.exports = {
     ]
   },
   srcDir: 'src/',
+  plugins: [{src: '~/plugins/firebase.js', client: true}],
   /*
   ** Customize the progress bar color
   */
