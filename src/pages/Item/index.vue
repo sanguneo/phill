@@ -1,23 +1,15 @@
 <template>
   <div class="container">
-    <StackPaper />
+    제품목록
   </div>
 </template>
 
 <script>
 
-import firebase from 'firebase';
-import StackPaper from '../components/StackPaper.vue';
 
 export default {
+  name: 'Item',
   components: {
-    StackPaper,
-  },
-  mounted() {
-    firebase.firestore().collection('inform')
-      .get()
-      .then(({ docs }) => docs.map(doc => doc.data()))
-      .then(console.log);
   },
 };
 </script>

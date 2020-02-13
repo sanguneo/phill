@@ -60,6 +60,7 @@ export default {
         transition: 1s all;
         color: white;
         font-weight: bold;
+        font-family: 'GmarketSans';
       }
       div.description {
         font-size: 13px;
@@ -68,7 +69,7 @@ export default {
         left: 50px;
         transition: 1s all;
         color: white;
-        font-weight: 400;
+        font-weight: 500;
       }
       &:not(.activePaper) {
         .title {

@@ -85,6 +85,7 @@ module.exports = {
     //
     'max-len': ["error", { "code": 1024 }],
     'import/no-unresolved': 0,
+    "import/extensions": 0,
     'no-unused-vars': 0,
     'vue/component-name-in-template-casing': 0,
     "vue/singleline-html-element-content-newline": 0,

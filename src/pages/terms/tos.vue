@@ -1,23 +1,15 @@
 <template>
   <div class="container">
-    <StackPaper />
+    이용약관
   </div>
 </template>
 
 <script>
 
-import firebase from 'firebase';
-import StackPaper from '../components/StackPaper.vue';
 
 export default {
+  name: 'TOS',
   components: {
-    StackPaper,
-  },
-  mounted() {
-    firebase.firestore().collection('inform')
-      .get()
-      .then(({ docs }) => docs.map(doc => doc.data()))
-      .then(console.log);
   },
 };
 </script>
