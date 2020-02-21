@@ -15,9 +15,11 @@ export default {
     Signup,
     DimmedBackground,
   },
-  data: () => ({
-    layer: 'Signup',
-  }),
+  computed: {
+    layer() {
+      return this.$store.getters['user/memberLayer'];
+    },
+  },
   mounted() {
     console.log();
   },

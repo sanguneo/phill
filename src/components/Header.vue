@@ -5,13 +5,11 @@
       <li>NEWS</li>
       <li>제품</li>
     </ul>
-    <div id="avatar" :class="user && user.id !== undefined && user.id !== null && 'active'"></div>
+    <div id="avatar" :class="user && user.id !== undefined && user.id !== null && 'active'" @click="openLogin"></div>
   </div>
 </template>
 
 <script>
-import firebase from 'firebase';
-
 export default {
   data: () => ({
     user: {
@@ -21,6 +19,11 @@ export default {
   }),
   mounted() {
     // console.log(firebase);
+  },
+  methods: {
+    openLogin() {
+      this.$store.commit('user/setMemberLayer', 'Login');
+    },
   },
 };
 </script>

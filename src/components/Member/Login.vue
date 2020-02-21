@@ -2,11 +2,11 @@
   <div class="login">
     <div class="title">Login</div>
     <div class="label">ID</div>
-    <input type="email" value="sknah0319@gmail.com" />
+    <input v-model="email" type="email" />
     <div class="label">Password</div>
-    <input type="password" value="sknah0319@gmail.com" />
+    <input ref="password" v-model="password" type="password" />
     <hr>
-    <button class="loginBtn">로그인</button>
+    <button class="loginBtn" @click="login">로그인</button>
   </div>
 </template>
 
@@ -15,9 +15,21 @@ export default {
   components: {
   },
   data: () => ({
+    email: 'sknah0319@gmaill.com',
+    password: 'password',
   }),
   mounted() {
     console.log();
+  },
+  methods: {
+    login() {
+      const pw = this.$refs.password.value;
+      if (pw.length < 8) {
+        alert('패스워드는 8자이상 입력해주세요');
+        return;
+      }
+      this.$store.dispatch('user/login', { email: this.email, password: pw });
+    },
   },
 };
 </script>
@@ -29,7 +41,7 @@ export default {
     box-shadow: 1px 1px 4px gray;
     position: absolute;
     width: 400px;
-    height: 400px;
+    /*height: 400px;*/
     box-sizing: border-box;
     padding: 30px 50px;
     top: calc(50% - 200px);

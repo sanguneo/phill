@@ -4,18 +4,24 @@ import { auth, firestore as db } from 'firebase';
 export default {
   state() {
     return {
+      memberLayer: '',
     };
   },
   getters: {
-    serverConfig(state) {
-      return state.serverConfig;
+    memberLayer(state) {
+      return state.memberLayer;
     },
   },
   mutations: {
-    setColorchip(state, colorchipArray) {
+    setMemberLayer(state, memberLayer) {
+      state.memberLayer = memberLayer;
     },
   },
   actions: {
+    login(store, userInfo) {
+      console.log(userInfo);
+      store.commit('setMemberLayer', '');
+    },
     signup(store, userInfo) {
       auth().createUserWithEmailAndPassword(userInfo.email, userInfo.password)
         .then((userCredential) => {
@@ -24,13 +30,14 @@ export default {
             .set({
               id: userCredential.user.uid,
               name: userInfo.name,
-              email: userInfo.name,
-              type: 1,
+              email: userInfo.email,
+              type: userInfo.type,
               level: 1,
-              tel: '',
-              interestMakers: [],
-              interestTags: [],
+              tel: userInfo.tel,
+              interestMakers: null,
+              interestTags: null,
             });
+          store.commit('setMemberLayer', '');
         });
     },
   },

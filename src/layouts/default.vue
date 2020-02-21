@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
     <Header />
-    <Member />
+    <Member v-if="layer !== ''"/>
     <nuxt />
   </div>
 </template>
@@ -14,6 +14,11 @@ export default {
   components: {
     Header,
     Member,
+  },
+  computed: {
+    layer() {
+      return this.$store.getters['user/memberLayer'];
+    },
   },
 };
 </script>
