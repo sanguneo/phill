@@ -15,12 +15,9 @@ export default {
   components: {
   },
   data: () => ({
-    email: 'sknah0319@gmaill.com',
+    email: 'sknah0319@gmail.com',
     password: 'password',
   }),
-  mounted() {
-    console.log();
-  },
   methods: {
     login() {
       const pw = this.$refs.password.value;

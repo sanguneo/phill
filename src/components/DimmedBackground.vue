@@ -1,5 +1,5 @@
 <template>
-  <div class="dimmedBackground">
+  <div class="dimmedBackground" @mousedown="onClick">
     <slot></slot>
   </div>
 </template>
@@ -7,6 +7,11 @@
 <script>
 export default {
   name: 'DimmedBackground',
+  methods: {
+    onClick(event) {
+      this.$emit('click', event);
+    },
+  },
 };
 </script>
 

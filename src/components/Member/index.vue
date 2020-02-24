@@ -1,6 +1,6 @@
 <template>
-  <DimmedBackground>
-    <component :is="layer"></component>
+  <DimmedBackground @click="clickOutside">
+    <component :is="layer" @closeMemberLayer="closeMemberLayer"></component>
   </DimmedBackground>
 </template>
 
@@ -20,8 +20,15 @@ export default {
       return this.$store.getters['user/memberLayer'];
     },
   },
-  mounted() {
-    console.log();
+  methods: {
+    closeMemberLayer() {
+      this.$store.commit('user/setMemberLayer', '');
+    },
+    clickOutside(event) {
+      if (event.target.classList.contains('dimmedBackground')) {
+        this.closeMemberLayer();
+      }
+    },
   },
 };
 </script>

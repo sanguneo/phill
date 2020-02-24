@@ -1,10 +1,10 @@
 /* eslint-disable no-param-reassign */
-import { auth, firestore as db } from 'firebase';
+import { auth, db, storage } from '../shared/firebase';
 
 export default {
   state() {
     return {
-      memberLayer: '',
+      memberLayer: 'Signup',
     };
   },
   getters: {
@@ -19,11 +19,15 @@ export default {
   },
   actions: {
     login(store, userInfo) {
-      console.log(userInfo);
-      store.commit('setMemberLayer', '');
+      auth().signInWithEmailAndPassword(userInfo.email, userInfo.password)
+        .then((userCredential) => {
+          console.log(userCredential);
+          store.commit('setMemberLayer', '');
+        });
     },
     signup(store, userInfo) {
-      auth().createUserWithEmailAndPassword(userInfo.email, userInfo.password)
+      const auths = auth();
+      auths.createUserWithEmailAndPassword(userInfo.email, userInfo.password)
         .then((userCredential) => {
           db().collection('users')
             .doc(userCredential.user.uid)
@@ -37,6 +41,7 @@ export default {
               interestMakers: null,
               interestTags: null,
             });
+          auths.currentUser.sendEmailVerification();
           store.commit('setMemberLayer', '');
         });
     },

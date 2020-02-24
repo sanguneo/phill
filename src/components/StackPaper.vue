@@ -1,14 +1,14 @@
 <template>
   <div class="stackPaper">
-    <div :class="{activePaper : activePaper === 0}" @click="console(0)">
+    <div :class="{activePaper : activePaper === 0}" @click="openPaper(0)">
       <div class="title">PHILL-8038</div>
       <div class="description">PHILL-8038 장비는 어쩌구저쩌구</div>
     </div>
-    <div :class="{activePaper : activePaper === 1}" @click="console(2)">
+    <div :class="{activePaper : activePaper === 1}" @click="openPaper(1)">
       <div class="title">Event</div>
       <div class="description">asdfsadf</div>
     </div>
-    <div :class="{activePaper : activePaper === 2}" @click="console(1)">
+    <div :class="{activePaper : activePaper === 2}" @click="openPaper(2)">
       <div class="title">Contact</div>
       <div class="description">제품을 홍보하고, 사이트에 대해 문의하세요.</div>
     </div>
@@ -24,7 +24,7 @@ export default {
     };
   },
   methods: {
-    console(e) {
+    openPaper(e) {
       this.activePaper = e;
     },
   },
