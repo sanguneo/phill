@@ -4,7 +4,7 @@ import { auth, db, storage } from '../shared/firebase';
 export default {
   state() {
     return {
-      memberLayer: 'Signup',
+      memberLayer: '',
     };
   },
   getters: {

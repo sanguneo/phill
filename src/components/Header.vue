@@ -2,8 +2,8 @@
   <div class="header">
     <div id="brand">TOS</div>
     <ul id="menus">
-      <li>NEWS</li>
-      <li>제품</li>
+      <li @click="$router.push('news')">NEWS</li>
+      <li @click="$router.push('catalog')">CATALOGS</li>
     </ul>
     <div id="avatar" :class="user && user.id !== undefined && user.id !== null && 'active'" @click="openLogin"></div>
   </div>
@@ -46,6 +46,7 @@ export default {
   }
   & > #menus {
     margin-left: auto;
+    margin-right: 20px;
     display: flex;
     list-style: none;
     padding: 0;
@@ -54,6 +55,7 @@ export default {
     & > li {
       width: 80px;
       letter-spacing: -1px;
+      text-align: center;
     }
   }
   & > #avatar {
