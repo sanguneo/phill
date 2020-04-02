@@ -13,5 +13,6 @@ const firebaseConfig = {
 // const app = firebase.apps.length
 //   ? firebase.app()
 firebase.initializeApp(firebaseConfig);
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
 
 // firebase.analytics();

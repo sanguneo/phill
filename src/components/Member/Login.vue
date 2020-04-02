@@ -16,7 +16,7 @@ export default {
   },
   data: () => ({
     email: 'sknah0319@gmail.com',
-    password: 'password',
+    password: 'sangkwon@79',
   }),
   methods: {
     login() {

@@ -1,38 +1,52 @@
 /* eslint-disable no-param-reassign */
-import { auth, db, storage } from '../shared/firebase';
+
+
+import { auth, firestore } from 'firebase';
 
 export default {
   state() {
     return {
       memberLayer: '',
+      user: {},
     };
   },
   getters: {
     memberLayer(state) {
       return state.memberLayer;
     },
+    user(state) {
+      return state.user;
+    },
   },
   mutations: {
     setMemberLayer(state, memberLayer) {
       state.memberLayer = memberLayer;
+    },
+    setUser(state, user) {
+      state.user = user;
+      window.sessionStorage.toslabUser = JSON.stringify(user);
     },
   },
   actions: {
     login(store, userInfo) {
       auth().signInWithEmailAndPassword(userInfo.email, userInfo.password)
         .then((userCredential) => {
-          console.log(userCredential);
-          store.commit('setMemberLayer', '');
+          firestore().collection('users')
+            .doc(userCredential.user.uid)
+            .get()
+            .then(doc => doc.data())
+            .then((user) => {
+              store.commit('setUser', user);
+              store.commit('setMemberLayer', '');
+            });
         });
     },
     signup(store, userInfo) {
-      const auths = auth();
-      auths.createUserWithEmailAndPassword(userInfo.email, userInfo.password)
+      auth().createUserWithEmailAndPassword(userInfo.email, userInfo.password)
         .then((userCredential) => {
-          db().collection('users')
+          firestore().collection('users')
             .doc(userCredential.user.uid)
             .set({
-              id: userCredential.user.uid,
               name: userInfo.name,
               email: userInfo.email,
               type: userInfo.type,

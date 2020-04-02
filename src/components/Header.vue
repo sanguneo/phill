@@ -1,24 +1,23 @@
 <template>
   <div class="header">
-    <div id="brand">TOS</div>
+    <div id="brand" @click="$router.push('/')">TOS</div>
     <ul id="menus">
-      <li @click="$router.push('news')">NEWS</li>
-      <li @click="$router.push('catalog')">CATALOGS</li>
+      <li class="menu" @click="$router.push('news')">NEWS</li>
+      <li class="menu" @click="$router.push('catalog')">CATALOGS</li>
     </ul>
-    <div id="avatar" :class="user && user.id !== undefined && user.id !== null && 'active'" @click="openLogin"></div>
+    <div id="avatar" :class="userActive && 'active'" @click="userActive ? openLogin() : $router.push('/mypage')"></div>
   </div>
 </template>
 
 <script>
 export default {
-  data: () => ({
-    user: {
-      name: 'sanguneo',
-      profile: 'about:blank',
+  computed: {
+    user() {
+      return this.$store.getters['user/user'];
     },
-  }),
-  mounted() {
-    // console.log(firebase);
+    userActive() {
+      return this.user && this.user.id !== undefined && this.user.id !== null;
+    },
   },
   methods: {
     openLogin() {
@@ -52,6 +51,9 @@ export default {
     padding: 0;
     align-items: center;
     justify-content: center;
+    .menu {
+      cursor: pointer;
+    }
     & > li {
       width: 80px;
       letter-spacing: -1px;
@@ -65,6 +67,8 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    background-color: #7F828B;
     &:not(.active) {
       background-image: url("../assets/img/user.svg");
       background-color: #7F828B;

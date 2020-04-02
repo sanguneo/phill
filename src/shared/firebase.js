@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-export const { auth, storage } = firebase;
-export const db = firebase.firestore;
+export const { auth, storage, firestore } = firebase;
+export const storageRef = storage().ref();
 
 export default firebase;
