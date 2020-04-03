@@ -5,7 +5,7 @@
       <li class="menu" @click="$router.push('news')">NEWS</li>
       <li class="menu" @click="$router.push('catalog')">CATALOGS</li>
     </ul>
-    <div id="avatar" :class="userActive && 'active'" @click="userActive ? openLogin() : $router.push('/mypage')"></div>
+    <div id="avatar" :class="userActive && 'active'" @click="!userActive ? openLogin() : $router.push('/mypage')"></div>
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
       return this.$store.getters['user/user'];
     },
     userActive() {
-      return this.user && this.user.id !== undefined && this.user.id !== null;
+      return this.user && this.user.id;
     },
   },
   methods: {

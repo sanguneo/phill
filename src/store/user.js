@@ -7,7 +7,7 @@ export default {
   state() {
     return {
       memberLayer: '',
-      user: {},
+      user: null,
     };
   },
   getters: {

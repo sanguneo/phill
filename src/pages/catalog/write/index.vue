@@ -94,9 +94,10 @@ export default {
               .set({
                 title: this.title,
                 content: this.content,
-                thumbnail: this.images[this.rep],
+                thumbnail: this.images[this.rep][0],
+                images: this.images.map(([path]) => path),
                 tags: this.tags.map(({ text }) => text),
-                created: firestore.Timestamp.now(),
+                created: new Date().getTime(),
                 updated: null,
                 user: this.user.id,
               }),
